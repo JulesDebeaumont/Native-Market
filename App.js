@@ -2,6 +2,7 @@ import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import { Title } from './components/Title';
+import { ArticleList } from './components/ArticleList';
 
 export default function App() {
   return (
@@ -10,6 +11,7 @@ export default function App() {
         <StatusBar style="light" />
         <Title title="Le titre !" />
       </View>
+      <ArticleList articles={articles} cart={cart} />
     </View>
   );
 }
@@ -23,3 +25,14 @@ const styles = StyleSheet.create({
     backgroundColor: '#707070',
   },
 });
+
+
+/*
+APP
+  TITLE
+  ARTICLEVIEW
+    ARTICLELIST
+      ARTICLE
+        QUANTITY
+    FOOTER
+*/

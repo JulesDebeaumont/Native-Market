@@ -1,11 +1,13 @@
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, Image } from 'react-native';
 import React from 'react';
 import PropTypes from 'prop-types';
 
 export function Footer(props) {
+  // eslint-disable-next-line react/prop-types
   const { cart } = props;
+  const allArticleInCart = Object.values(cart).map(v => <Image source={v.articles.picture} />);
 
-  return <View style={styles.footer} />;
+  return <View style={styles.footer}>{allArticleInCart}</View>;
 }
 
 const styles = StyleSheet.create({

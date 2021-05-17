@@ -15,7 +15,7 @@ export function ArticleView(props) {
       </View>
       <View style={styles.articleBottom}>
         <Image source={picture} style={{ width: 200, height: 200 }} resizeMode="center" />
-        <Quantity quantity={quantity} />
+        <Quantity quantity={quantity} onUpdate={() => console.log('onUpdate Function')} />
       </View>
     </View>
   );

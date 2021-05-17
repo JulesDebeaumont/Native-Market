@@ -1,15 +1,15 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
 import { Image, StyleSheet, View, Text } from 'react-native';
 import PropTypes from 'prop-types';
 
 export function Article(props) {
-  // eslint-disable-next-line react/prop-types
-  const { picture, price } = props;
+  const { article } = props;
 
   return (
     <View style={styles.article}>
-      <Image source={picture} style={{ width: 70, height: 70 }} resizeMode="center" />
-      <Text>{price}</Text>
+      <Image source={article.picture} style={{ width: 70, height: 70 }} resizeMode="center" />
+      <Text>{article.price}</Text>
     </View>
   );
 }
@@ -27,8 +27,7 @@ const styles = StyleSheet.create({
 });
 
 Article.defaultProps = {
-  picture: PropTypes.string,
-  price: PropTypes.number,
+  article: PropTypes.object,
 };
 
 export default Article;
