@@ -2,32 +2,26 @@ import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import PropTypes from 'prop-types';
 import { Article } from './Article';
-import { Footer } from './Footer';
 
 export function ArticleList(props) {
   // eslint-disable-next-line react/prop-types
-  const { articles, cart } = props;
+  const { articles } = props;
 
   const allArticles = Object.values(articles).map(v => <Article article={v} key={v.id} />);
 
-  return (
-    <View style={styles.container}>
-      {allArticles}
-      <Footer cart={cart} />
-    </View>
-  );
+  return <View style={styles.list}>{allArticles}</View>;
 }
 
 const styles = StyleSheet.create({
-  container: {
+  list: {
     backgroundColor: '#fff',
     flex: 1,
+    flexDirection: 'column',
   },
 });
 
 ArticleList.defaultProps = {
   articles: PropTypes.object,
-  cart: PropTypes.object,
 };
 
 export default ArticleList;

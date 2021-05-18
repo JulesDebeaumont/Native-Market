@@ -1,9 +1,0 @@
-{
-    "article": [
-      { "id": 1, "description": "json-server", "price" : 50 , "type" : "regular" , "picture" : "default"}
-    ],
-    "cart": [
-      { "id": 1, "quantity": 16 , "price": 8 }
-    ],
-    "pictures": { "name": "default.jpg" }
-  }
