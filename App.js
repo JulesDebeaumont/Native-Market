@@ -1,13 +1,13 @@
 import { StatusBar } from 'expo-status-bar';
-import React, { useReducer } from 'react';
+import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import { Title } from './components/Title';
 import { ArticleView } from './components/ArticleView';
 import { MyContext } from './context/store';
-import reducer, { initialState } from './reducer/index';
+import useArticles from './hooks/useArticles';
 
 export default function App() {
-  const [state, dispatch] = useReducer(reducer, initialState);
+  const { state, dispatch } = useArticles();
 
   return (
     <MyContext.Provider value={{ state, dispatch }}>
