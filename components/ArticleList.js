@@ -15,7 +15,6 @@ export function ArticleList(props) {
 const styles = StyleSheet.create({
   list: {
     backgroundColor: '#fff',
-    flex: 1,
     flexDirection: 'column',
   },
 });

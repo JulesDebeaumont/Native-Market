@@ -1,25 +1,30 @@
 /* eslint-disable guard-for-in */
 /* eslint-disable no-restricted-syntax */
-import { useState, useEffect, useReducer } from 'react';
+import { useEffect, useReducer } from 'react';
 import { getAllArticles } from '../services/articleAPI';
 import { getAllPanier } from '../services/panierAPI';
 import reducer, { initialState } from '../reducer/index';
 
 export default function useArticles() {
-  const [articles, setArticles] = useState({});
-  const [inCart, setInCart] = useState({});
   const [state, dispatch] = useReducer(reducer, initialState);
 
   useEffect(() => {
-    getAllArticles().then(articles => setArticles(articles));
-    getAllPanier().then(panier => {
-      const transformCart = {};
-      for (const i in panier) {
-        transformCart[panier[i].id] = panier[i];
+    getAllArticles().then(articles => {
+      const allArticles = {};
+      for (const i in articles) {
+        allArticles[articles[i].id] = articles[i];
       }
-      setInCart(transformCart);
+      dispatch({ type: 'setArticles', articles });
+    });
+
+    getAllPanier().then(panier => {
+      const cart = {};
+      for (const i in panier) {
+        cart[panier[i].id] = panier[i];
+      }
+      dispatch({ type: 'setCart', cart });
     });
   }, []);
 
-  return { articles, inCart, state, dispatch };
+  return { state, dispatch };
 }

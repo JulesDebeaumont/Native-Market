@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Button } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import React from 'react';
 import PropTypes from 'prop-types';
 
@@ -8,14 +8,14 @@ export function Quantity(props) {
 
   return (
     <View style={styles.quantity}>
-      <Text>Quantity: {quantity}</Text>
-      <Button onPress={onUpdate} title="button" />
+      <Text onUpdate={onUpdate()}>Quantity: {quantity}</Text>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   quantity: {
+    justifyContent: 'center',
     backgroundColor: '#ccc091',
     width: '100%',
     padding: 15,

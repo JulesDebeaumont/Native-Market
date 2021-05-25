@@ -24,9 +24,12 @@ export function Article(props) {
 const styles = StyleSheet.create({
   article: {
     backgroundColor: '#ccc091',
-    width: '100%',
     padding: 15,
-    marginTop: 25,
+    margin: 25,
+    borderColor: '#5ad68a',
+    borderStyle: 'solid',
+    borderRadius: 5,
+    borderWidth: 1,
   },
 
   articleTop: {

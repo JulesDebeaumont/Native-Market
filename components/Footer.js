@@ -1,11 +1,12 @@
 import { StyleSheet, View, Image } from 'react-native';
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { useContext } from 'react';
+import { MyContext } from '../context/store';
 
-export function Footer(props) {
-  // eslint-disable-next-line react/prop-types
-  const { cart } = props;
-  const allArticleInCart = Object.values(cart).map(v => <Image source={v.articles.picture} />);
+export function Footer() {
+  const { state } = useContext(MyContext);
+  console.log(state);
+
+  const allArticleInCart = Object.values(state.cart).map(v => <Image source={state.articles[v.id].picture} />);
 
   return <View style={styles.footer}>{allArticleInCart}</View>;
 }
@@ -20,9 +21,5 @@ const styles = StyleSheet.create({
     width: '100%',
   },
 });
-
-Footer.defaultProps = {
-  cart: PropTypes.object,
-};
 
 export default Footer;
