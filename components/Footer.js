@@ -4,8 +4,6 @@ import { MyContext } from '../context/store';
 
 export function Footer() {
   const { state } = useContext(MyContext);
-  console.log(state);
-
   const allArticleInCart = Object.values(state.cart).map(v => <Image source={state.articles[v.id].picture} />);
 
   return <View style={styles.footer}>{allArticleInCart}</View>;

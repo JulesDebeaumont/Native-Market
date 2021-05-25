@@ -11,10 +11,14 @@ export function Article(props) {
     <View style={styles.article}>
       <View style={styles.articleTop}>
         <Text style={styles.articleDesc}>{article.description}</Text>
-        <Text style={styles.articlePrice}>{article.price}</Text>
+        <Text style={styles.articlePrice}>{article.prix}€</Text>
       </View>
       <View style={styles.articleBottom}>
-        <Image source={article.picture} style={{ width: 200, height: 200 }} resizeMode="center" />
+        <Image
+          source={{ uri: `http://10.31.4.155:7000/${article.picture}` }}
+          style={{ width: 200, height: 200 }}
+          resizeMode="contain"
+        />
       </View>
       <Quantity quantity={inCart.quantity} onUpdate={() => console.log('onUpdate Function')} />
     </View>
@@ -30,6 +34,7 @@ const styles = StyleSheet.create({
     borderStyle: 'solid',
     borderRadius: 5,
     borderWidth: 1,
+    alignContent: 'center',
   },
 
   articleTop: {
@@ -44,8 +49,20 @@ const styles = StyleSheet.create({
 
   articleDesc: {
     color: '#000000',
-    fontSize: 40,
+    paddingTop: 8,
+    fontSize: 30,
     textAlign: 'center',
+  },
+
+  articlePrice: {
+    color: '#000000',
+    backgroundColor: '#30B080',
+    fontSize: 40,
+    borderColor: '#5ad68a',
+    borderStyle: 'solid',
+    borderRadius: 5,
+    borderWidth: 2,
+    padding: 5,
   },
 });
 
