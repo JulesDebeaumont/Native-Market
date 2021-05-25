@@ -5,8 +5,8 @@ import { Article } from './Article';
 
 export function ArticleList(props) {
   // eslint-disable-next-line react/prop-types
-  const { articles } = props;
-  const allArticles = Object.values(articles).map(v => <Article article={v} key={v.id} />);
+  const { articles, inCart } = props;
+  const allArticles = Object.values(articles).map(v => <Article article={v} key={v.id} inCart={inCart[v.id]} />);
 
   return <View style={styles.list}>{allArticles}</View>;
 }

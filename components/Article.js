@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
-import React from 'react';
 import { Image, StyleSheet, View, Text } from 'react-native';
 import PropTypes from 'prop-types';
+import React from 'react';
 import { Quantity } from './Quantity';
 
 export function Article(props) {
@@ -20,7 +20,7 @@ export function Article(props) {
           resizeMode="contain"
         />
       </View>
-      <Quantity quantity={inCart.quantity} onUpdate={() => console.log('onUpdate Function')} />
+      <Quantity onUpdate={() => console.log('onUpdate Function')} quantity={inCart.quantity} />
     </View>
   );
 }
@@ -39,6 +39,7 @@ const styles = StyleSheet.create({
 
   articleTop: {
     flexDirection: 'row',
+    flexWrap: 'wrap',
     justifyContent: 'space-between',
   },
 

@@ -1,21 +1,27 @@
-import { StyleSheet, View, Image } from 'react-native';
+import { StyleSheet, View, Text } from 'react-native';
 import React, { useContext } from 'react';
 import { MyContext } from '../context/store';
 
 export function Footer() {
   const { state } = useContext(MyContext);
-  const allArticleInCart = Object.values(state.cart).map(v => <Image source={state.articles[v.id].picture} />);
+  const allArticleInCart = Object.values(state.cart).map(v => (
+    <Text>
+      {state.articles[v.id].description} | Quantity: {v.quantity} | Total price: {v.quantity * v.prix}
+    </Text>
+  ));
 
   return <View style={styles.footer}>{allArticleInCart}</View>;
 }
 
 const styles = StyleSheet.create({
   footer: {
+    justifyContent: 'center',
+    alignItems: 'center',
     position: 'absolute',
     bottom: '0%',
     left: '0%',
     backgroundColor: '#54c499',
-    height: 40,
+    height: 80,
     width: '100%',
   },
 });
