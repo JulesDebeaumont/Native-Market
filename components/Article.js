@@ -9,8 +9,6 @@ export function Article(props) {
   const { article, inCart } = props;
   const { changeQuantity } = useQuantity();
 
-  console.log(inCart);
-
   return (
     <View style={styles.article}>
       <View style={styles.articleTop}>
@@ -24,7 +22,10 @@ export function Article(props) {
           resizeMode="contain"
         />
       </View>
-      <Quantity onUpdate={value => changeQuantity(value, article.id)} quantity={inCart.quantity} />
+      <Quantity
+        onUpdate={value => changeQuantity(value, article.id)}
+        quantity={Number.isInteger(inCart.quantity) ? inCart.quantity : 0}
+      />
     </View>
   );
 }

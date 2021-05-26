@@ -12,7 +12,7 @@ export default function reducer(state = initialState, action) {
       return { ...state, cart: action.cart };
 
     case 'changeQuantityArticleInCart':
-      console.log(state);
+      console.log(state.cart[action.id]);
       return {
         ...state,
         cart: { ...state.cart, [action.id]: { ...state.cart[action.id], quantity: action.value } },

@@ -5,10 +5,11 @@ import PropTypes from 'prop-types';
 export function Quantity(props) {
   // eslint-disable-next-line react/prop-types
   const { quantity, onUpdate } = props;
+  console.log(quantity);
 
   return (
     <View style={styles.quantity}>
-      <Text>Quantity: {Number.isInteger(quantity) ? quantity : 0}</Text>
+      <Text>Quantity: {quantity}</Text>
       <Button onPress={() => onUpdate(quantity + 1)} title="+" />
       <Button onPress={() => onUpdate(quantity - 1)} title="-" />
     </View>

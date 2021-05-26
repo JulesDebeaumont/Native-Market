@@ -1,13 +1,14 @@
 /* eslint-disable guard-for-in */
 /* eslint-disable no-restricted-syntax */
-import { useReducer } from 'react';
-import reducer, { initialState } from '../reducer/index';
+import { useContext } from 'react';
+import { MyContext } from '../context/store';
 
 export default function useQuantity() {
-  const [state, dispatch] = useReducer(reducer, initialState);
+  // eslint-disable-next-line no-unused-vars
+  const { state, dispatch } = useContext(MyContext);
 
   function changeQuantity(value, id) {
-    if (value > 0) {
+    if (value >= 0) {
       dispatch({ type: 'changeQuantityArticleInCart', value, id });
     }
   }

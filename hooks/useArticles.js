@@ -18,7 +18,6 @@ export default function useArticles() {
     }, []);
 
     getAllPanier().then(panier => {
-      console.log(panier);
       const cart = {};
       for (const i in panier) {
         cart[panier[i].id] = panier[i];
