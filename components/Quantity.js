@@ -8,9 +8,9 @@ export function Quantity(props) {
 
   return (
     <View style={styles.quantity}>
-      <Text onUpdate={onUpdate()}>Quantity: {Number.isInteger(quantity) ? quantity : 0}</Text>
-      <Button title="+" />
-      <Button title="-" />
+      <Text>Quantity: {Number.isInteger(quantity) ? quantity : 0}</Text>
+      <Button onPress={() => onUpdate(quantity + 1)} title="+" />
+      <Button onPress={() => onUpdate(quantity - 1)} title="-" />
     </View>
   );
 }

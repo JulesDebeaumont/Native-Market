@@ -4,8 +4,6 @@ export const initialState = {
 };
 
 export default function reducer(state = initialState, action) {
-  const { id } = action;
-
   switch (action.type) {
     case 'setArticles':
       return { ...state, articles: action.articles };
@@ -13,28 +11,19 @@ export default function reducer(state = initialState, action) {
     case 'setCart':
       return { ...state, cart: action.cart };
 
-    case 'incrementArticleInCart':
+    case 'changeQuantityArticleInCart':
+      console.log(state);
       return {
         ...state,
-        cart: { ...state.cart, [id]: { ...state.cart[id], quantity: { ...(state.cart[id].quantity + 1) } } },
+        cart: { ...state.cart, [action.id]: { ...state.cart[action.id], quantity: action.value } },
       };
 
     /*
     return { ...state , cart : 
-      { ...state.cart , [id] : 
-      { ...state.cart[id] , quantity :
-      { ...state.cart[id].quantity + 1}}}};
+           { ...state.cart , [id] : 
+           { ...state.cart[id] , quantity :
+           { ...state.cart[id].quantity + 1}}}};
     */
-
-    case 'decrementArticleInCart':
-      if (action.quantity > 0) {
-        return {
-          ...state,
-          cart: { ...state.cart, [id]: { ...state.cart[id], quantity: { ...(state.cart[id].quantity - 1) } } },
-        };
-      }
-
-      return null;
 
     default:
       throw new Error();

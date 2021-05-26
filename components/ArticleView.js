@@ -7,7 +7,6 @@ import { MyContext } from '../context/store';
 export function ArticleView() {
   const { state } = useContext(MyContext);
 
-  console.log(state);
   return (
     <>
       <ScrollView>

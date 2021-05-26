@@ -3,9 +3,13 @@ import { Image, StyleSheet, View, Text } from 'react-native';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { Quantity } from './Quantity';
+import useQuantity from '../hooks/useQuantity';
 
 export function Article(props) {
   const { article, inCart } = props;
+  const { changeQuantity } = useQuantity();
+
+  console.log(inCart);
 
   return (
     <View style={styles.article}>
@@ -20,7 +24,7 @@ export function Article(props) {
           resizeMode="contain"
         />
       </View>
-      <Quantity onUpdate={() => console.log('onUpdate Function')} quantity={inCart.quantity} />
+      <Quantity onUpdate={value => changeQuantity(value, article.id)} quantity={inCart.quantity} />
     </View>
   );
 }
