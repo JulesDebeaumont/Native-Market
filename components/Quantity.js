@@ -1,15 +1,16 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { Button, StyleSheet, Text, View } from 'react-native';
 import React from 'react';
 import PropTypes from 'prop-types';
 
 export function Quantity(props) {
   // eslint-disable-next-line react/prop-types
   const { quantity, onUpdate } = props;
-  console.log(quantity);
 
   return (
     <View style={styles.quantity}>
       <Text onUpdate={onUpdate()}>Quantity: {Number.isInteger(quantity) ? quantity : 0}</Text>
+      <Button title="+" />
+      <Button title="-" />
     </View>
   );
 }
