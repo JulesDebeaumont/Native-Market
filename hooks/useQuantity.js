@@ -7,9 +7,9 @@ export default function useQuantity() {
   // eslint-disable-next-line no-unused-vars
   const { state, dispatch } = useContext(MyContext);
 
-  function changeQuantity(value, id) {
-    if (value >= 0) {
-      dispatch({ type: 'changeQuantityArticleInCart', value, id });
+  function changeQuantity(quantity, id, prix) {
+    if (quantity >= 0) {
+      dispatch({ type: 'changeQuantityArticleInCart', article: { quantity, id, prix } });
     }
   }
 

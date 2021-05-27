@@ -5,7 +5,6 @@ import PropTypes from 'prop-types';
 export function Quantity(props) {
   // eslint-disable-next-line react/prop-types
   const { quantity, onUpdate } = props;
-  console.log(quantity);
 
   return (
     <View style={styles.quantity}>

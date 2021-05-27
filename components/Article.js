@@ -23,7 +23,7 @@ export function Article(props) {
         />
       </View>
       <Quantity
-        onUpdate={value => changeQuantity(value, article.id)}
+        onUpdate={value => changeQuantity(value, article.id, article.prix)}
         quantity={Number.isInteger(inCart.quantity) ? inCart.quantity : 0}
       />
     </View>

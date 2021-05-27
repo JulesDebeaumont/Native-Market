@@ -5,7 +5,7 @@ import { MyContext } from '../context/store';
 export function Footer() {
   const { state } = useContext(MyContext);
   const allArticleInCart = Object.values(state.cart).map(v => (
-    <Text>
+    <Text key={v.id}>
       {state.articles[v.id].description} | Quantity: {v.quantity} | Total price: {v.quantity * v.prix}
     </Text>
   ));

@@ -12,18 +12,10 @@ export default function reducer(state = initialState, action) {
       return { ...state, cart: action.cart };
 
     case 'changeQuantityArticleInCart':
-      console.log(state.cart[action.id]);
       return {
         ...state,
-        cart: { ...state.cart, [action.id]: { ...state.cart[action.id], quantity: action.value } },
+        cart: { ...state.cart, [action.article.id]: { ...action.article } },
       };
-
-    /*
-    return { ...state , cart : 
-           { ...state.cart , [id] : 
-           { ...state.cart[id] , quantity :
-           { ...state.cart[id].quantity + 1}}}};
-    */
 
     default:
       throw new Error();
