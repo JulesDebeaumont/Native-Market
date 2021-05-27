@@ -4,6 +4,7 @@ import { useEffect, useReducer } from 'react';
 import { getAllArticles } from '../services/articleAPI';
 import { getAllPanier } from '../services/panierAPI';
 import reducer, { initialState } from '../reducer/index';
+import { setArticles, setCart } from '../actions/index';
 
 export default function useArticles() {
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -14,7 +15,7 @@ export default function useArticles() {
       for (const i in articles) {
         allArticles[articles[i].id] = articles[i];
       }
-      dispatch({ type: 'setArticles', articles });
+      dispatch(setArticles(allArticles));
     }, []);
 
     getAllPanier().then(panier => {
@@ -22,7 +23,7 @@ export default function useArticles() {
       for (const i in panier) {
         cart[panier[i].id] = panier[i];
       }
-      dispatch({ type: 'setCart', cart });
+      dispatch(setCart(cart));
     });
   }, []);
 

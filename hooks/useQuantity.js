@@ -2,6 +2,7 @@
 /* eslint-disable no-restricted-syntax */
 import { useContext } from 'react';
 import { MyContext } from '../context/store';
+import { changeQuantityArticleInCart } from '../actions/index';
 
 export default function useQuantity() {
   // eslint-disable-next-line no-unused-vars
@@ -9,7 +10,7 @@ export default function useQuantity() {
 
   function changeQuantity(quantity, id, prix) {
     if (quantity >= 0) {
-      dispatch({ type: 'changeQuantityArticleInCart', article: { quantity, id, prix } });
+      dispatch(changeQuantityArticleInCart({ quantity, id, prix }));
     }
   }
 

@@ -13,7 +13,7 @@ export function Article(props) {
     <View style={styles.article}>
       <View style={styles.articleTop}>
         <Text style={styles.articleDesc}>{article.description}</Text>
-        <Text style={styles.articlePrice}>{article.prix === inCart.prix ?? inCart.prix}€</Text>
+        <Text style={styles.articlePrice}>{inCart.prix ?? article.prix}€</Text>
       </View>
       <View style={styles.articleBottom}>
         <Image
