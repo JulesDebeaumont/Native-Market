@@ -9,7 +9,6 @@ export function Footer() {
       {state.articles[v.id].description} | Quantity: {v.quantity} | Total price: {v.quantity * v.prix}
     </Text>
   ));
-
   return <View style={styles.footer}>{allArticleInCart}</View>;
 }
 

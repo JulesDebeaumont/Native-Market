@@ -1,3 +1,5 @@
+import { actions } from '../actions/index';
+
 export const initialState = {
   articles: {},
   cart: {},
@@ -5,13 +7,13 @@ export const initialState = {
 
 export default function reducer(state = initialState, action) {
   switch (action.type) {
-    case 'setArticles':
+    case actions.SET_ARTICLES:
       return { ...state, articles: action.articles };
 
-    case 'setCart':
+    case actions.SET_CART:
       return { ...state, cart: action.cart };
 
-    case 'changeQuantityArticleInCart':
+    case actions.CHANGE_QUANTITY_ARTICLE_IN_CART:
       return {
         ...state,
         cart: { ...state.cart, [action.article.id]: { ...action.article } },
