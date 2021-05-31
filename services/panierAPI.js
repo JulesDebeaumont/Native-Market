@@ -13,6 +13,26 @@ export function getAllPanier() {
     });
 }
 
+export function patchCartToEmpty(cart) {
+  const header = new Headers({
+    'Content-Type': 'application/merge-patch+json',
+  });
+
+  return fetch(`${url}/panier`, {
+    method: 'PATCH',
+    body: JSON.stringify(cart),
+    headers: header,
+  })
+    .then(response => {
+      if (response.ok) return response.json();
+      throw Error(`Erreur au niveau de patchCartToEmpty ${response.status}`);
+    })
+
+    .catch(error => {
+      console.log(`Il y a eu un problème avec l'opération fetch: ${error.message}`);
+    });
+}
+
 export function getPanierById(id) {
   return fetch(`${url}/panier/${id}`)
     .then(response => {
@@ -25,19 +45,39 @@ export function getPanierById(id) {
     });
 }
 
-export function patchPanierById(panier) {
+export function patchPanierById(article) {
   const header = new Headers({
     'Content-Type': 'application/merge-patch+json',
   });
 
-  return fetch(`${url}/panier/${panier.id}`, {
+  return fetch(`${url}/panier/${article.id}`, {
     method: 'PATCH',
-    body: JSON.stringify(panier),
+    body: JSON.stringify(article),
     headers: header,
   })
     .then(response => {
       if (response.ok) return response.json();
-      throw Error(`Erreur au niveau de getPanierById ${response.status}`);
+      throw Error(`Erreur au niveau de patchPanierById ${response.status}`);
+    })
+
+    .catch(error => {
+      console.log(`Il y a eu un problème avec l'opération fetch: ${error.message}`);
+    });
+}
+
+export function postPanierByID(article) {
+  const header = new Headers({
+    'Content-Type': 'application/merge-patch+json',
+  });
+
+  return fetch(`${url}/panier/${article.id}`, {
+    method: 'POST',
+    body: JSON.stringify(article),
+    headers: header,
+  })
+    .then(response => {
+      if (response.ok) return response.json();
+      throw Error(`Erreur au niveau de postPanierByID ${response.status}`);
     })
 
     .catch(error => {

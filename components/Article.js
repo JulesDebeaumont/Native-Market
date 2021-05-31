@@ -4,29 +4,36 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { Quantity } from './Quantity';
 import useQuantity from '../hooks/useQuantity';
+import { Loading } from './Loading';
 
 export function Article(props) {
   const { article, inCart } = props;
-  const { changeQuantity } = useQuantity();
+  const { changeQuantity, isBusy } = useQuantity();
 
   return (
-    <View style={styles.article}>
-      <View style={styles.articleTop}>
-        <Text style={styles.articleDesc}>{article.description}</Text>
-        <Text style={styles.articlePrice}>{inCart.prix ?? article.prix}€</Text>
-      </View>
-      <View style={styles.articleBottom}>
-        <Image
-          source={{ uri: `http://10.31.4.155:7000/${article.picture}` }}
-          style={{ width: 200, height: 200 }}
-          resizeMode="contain"
-        />
-      </View>
-      <Quantity
-        onUpdate={value => changeQuantity(value, article.id, article.prix)}
-        quantity={Number.isInteger(inCart.quantity) ? inCart.quantity : 0}
-      />
-    </View>
+    <>
+      {isBusy ? (
+        <Loading />
+      ) : (
+        <View style={styles.article}>
+          <View style={styles.articleTop}>
+            <Text style={styles.articleDesc}>{article.description}</Text>
+            <Text style={styles.articlePrice}>{inCart.prix ?? article.prix}€</Text>
+          </View>
+          <View style={styles.articleBottom}>
+            <Image
+              source={{ uri: `http://10.31.4.155:7000/${article.picture}` }}
+              style={{ width: 200, height: 200 }}
+              resizeMode="contain"
+            />
+          </View>
+          <Quantity
+            onUpdate={value => changeQuantity(value, article.id, article.prix)}
+            quantity={Number.isInteger(inCart.quantity) ? inCart.quantity : 0}
+          />
+        </View>
+      )}
+    </>
   );
 }
 

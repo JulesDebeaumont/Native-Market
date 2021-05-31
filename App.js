@@ -2,7 +2,7 @@ import 'react-native-gesture-handler';
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
-import { NativeRouter, Route, Link } from 'react-router-native';
+import { NativeRouter, Route } from 'react-router-native';
 import { Title } from './components/Title';
 import { MyContext } from './context/store';
 import useArticles from './hooks/useArticles';
@@ -20,7 +20,7 @@ export default function App() {
             <StatusBar style="light" />
             <Title title="API-Panier" />
           </View>
-          <Route exact path="/articles" component={ArticleView} />
+          <Route exact path="/" component={ArticleView} />
           <Route exact path="/cart" component={CartView} />
         </View>
       </MyContext.Provider>
