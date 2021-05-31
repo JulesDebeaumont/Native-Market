@@ -14,7 +14,7 @@ export function ArticleView() {
           <ArticleList articles={state.articles} inCart={state.cart} />
         </View>
       </ScrollView>
-      <Footer />
+      <Footer route="/cart" />
     </>
   );
 }
