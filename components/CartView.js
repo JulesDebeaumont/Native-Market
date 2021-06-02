@@ -1,3 +1,5 @@
+/* eslint-disable guard-for-in */
+/* eslint-disable no-restricted-syntax */
 import { ScrollView, StyleSheet, View, Button, Alert } from 'react-native';
 import React, { useContext } from 'react';
 import { Footer } from './Footer';
@@ -7,22 +9,28 @@ import useCart from '../hooks/useCart';
 
 export function CartView() {
   const { state } = useContext(MyContext);
-  const filteredArticles = Object.values(state.articles).filter(article =>
-    Object.values(state.cart).includes(article.id),
-  );
+  const filteredArticles = Object.values(state.cart).map(v => state.articles[v.id]);
+
   const { resetPanier } = useCart();
+  const stringArticlesInCart = filteredArticles.map(v => `\n${v.description} x${state.cart[v.id].quantity}`);
+  let totalPrice = 0;
+
+  for (const v in state.cart) {
+    totalPrice += state.cart[v].prix * state.cart[v].quantity;
+  }
 
   const createButtonAlert = () =>
     Alert.alert(
       'Commande',
-      'Vous êtes sur le point de commander les articles suivant: ',
+      `Vous êtes sur le point de commander les articles suivant: \n${stringArticlesInCart}\n\n
+      Pour un total de ${totalPrice.toFixed(2)}€`,
       [
         {
-          text: 'Cancel',
+          text: 'ANNULER',
           onPress: () => console.log('Cancel Pressed'),
           style: 'cancel',
         },
-        { text: 'OK', onPress: () => console.log('OK Pressed') },
+        { text: 'COMMANDER', onPress: () => console.log('OK Pressed') },
       ],
       { cancelable: false },
     );
