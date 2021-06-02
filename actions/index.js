@@ -2,6 +2,7 @@ export const actions = {
   SET_ARTICLES: 'setArticles',
   SET_CART: 'setCart',
   CHANGE_QUANTITY_ARTICLE_IN_CART: 'changeQuantityArticleInCart',
+  DELETE_ARTICLE_IN_CART: 'deleteArticleInCart',
   SET_IS_BUSY: 'setIsBusy',
   UNSET_IS_BUSY: 'unsetIsBusy',
   RESET_CART: 'resetCart',
@@ -28,15 +29,24 @@ export function changeQuantityArticleInCart(article) {
   };
 }
 
-export function setIsBusy() {
+export function deleteArticleInCart(article) {
   return {
-    type: actions.SET_IS_BUSY,
+    type: actions.DELETE_ARTICLE_IN_CART,
+    article,
   };
 }
 
-export function unsetIsBusy() {
+export function setIsBusy(index) {
+  return {
+    type: actions.SET_IS_BUSY,
+    index,
+  };
+}
+
+export function unsetIsBusy(index) {
   return {
     type: actions.UNSET_IS_BUSY,
+    index,
   };
 }
 

@@ -1,10 +1,9 @@
 /* eslint-disable react/prop-types */
-import { Image, StyleSheet, View, Text } from 'react-native';
+import { Image, StyleSheet, View, Text, ActivityIndicator } from 'react-native';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { Quantity } from './Quantity';
 import useQuantity from '../hooks/useQuantity';
-import { Loading } from './Loading';
 
 export function Article(props) {
   const { article, inCart } = props;
@@ -12,27 +11,27 @@ export function Article(props) {
 
   return (
     <>
-      {isBusy ? (
-        <Loading />
-      ) : (
-        <View style={styles.article}>
-          <View style={styles.articleTop}>
-            <Text style={styles.articleDesc}>{article.description}</Text>
-            <Text style={styles.articlePrice}>{inCart.prix ?? article.prix}€</Text>
-          </View>
-          <View style={styles.articleBottom}>
-            <Image
-              source={{ uri: `http://10.31.4.155:7000/${article.picture}` }}
-              style={{ width: 200, height: 200 }}
-              resizeMode="contain"
-            />
-          </View>
+      <View style={styles.article}>
+        <View style={styles.articleTop}>
+          <Text style={styles.articleDesc}>{article.description}</Text>
+          <Text style={styles.articlePrice}>{inCart.prix ?? article.prix}€</Text>
+        </View>
+        <View style={styles.articleBottom}>
+          <Image
+            source={{ uri: `http://10.31.4.155:7000/${article.picture}` }}
+            style={{ width: 200, height: 200 }}
+            resizeMode="contain"
+          />
+        </View>
+        {isBusy[article.id] ? (
+          <ActivityIndicator size="small" color="#000000" style={styles.icon} />
+        ) : (
           <Quantity
             onUpdate={value => changeQuantity(value, article.id, article.prix)}
             quantity={Number.isInteger(inCart.quantity) ? inCart.quantity : 0}
           />
-        </View>
-      )}
+        )}
+      </View>
     </>
   );
 }
@@ -47,6 +46,11 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     borderWidth: 1,
     alignContent: 'center',
+  },
+
+  icon: {
+    marginTop: 40,
+    marginBottom: 85,
   },
 
   articleTop: {

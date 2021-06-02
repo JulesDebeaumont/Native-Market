@@ -3,7 +3,7 @@ import { actions } from '../actions/index';
 export const initialState = {
   articles: {},
   cart: {},
-  isBusy: false,
+  isBusy: {},
 };
 
 export default function reducer(state = initialState, action) {
@@ -20,16 +20,22 @@ export default function reducer(state = initialState, action) {
         cart: { ...state.cart, [action.article.id]: { ...action.article } },
       };
 
+    case actions.DELETE_ARTICLE_IN_CART:
+      return {
+        ...state,
+        cart: { ...action.article },
+      };
+
     case actions.SET_IS_BUSY:
       return {
         ...state,
-        isBusy: true,
+        isBusy: { ...state.isBusy, [action.index]: true },
       };
 
     case actions.UNSET_IS_BUSY:
       return {
         ...state,
-        isBusy: false,
+        isBusy: { ...state.isBusy, [action.index]: false },
       };
 
     case actions.RESET_CART:

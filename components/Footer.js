@@ -18,8 +18,6 @@ export function Footer(props) {
     totalQuantity += state.cart[v].quantity;
   }
 
-  console.log(totalQuantity, totalPrice);
-
   return (
     <>
       <View style={styles.footer}>

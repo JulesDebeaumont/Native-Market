@@ -9,10 +9,10 @@ export default function useCart() {
   // eslint-disable-next-line no-unused-vars
   const { state, dispatch } = useContext(MyContext);
 
-  function resetPanier() {
+  async function resetPanier(empty) {
     dispatch(setIsBusy());
+    await patchCartToEmpty(empty);
     dispatch(resetCart());
-    patchCartToEmpty({});
     dispatch(unsetIsBusy());
   }
 

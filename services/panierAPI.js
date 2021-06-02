@@ -15,7 +15,7 @@ export function getAllPanier() {
 
 export function patchCartToEmpty(cart) {
   const header = new Headers({
-    'Content-Type': 'application/merge-patch+json',
+    'Content-Type': 'application/json',
   });
 
   return fetch(`${url}/panier`, {
@@ -47,7 +47,7 @@ export function getPanierById(id) {
 
 export function patchPanierById(article) {
   const header = new Headers({
-    'Content-Type': 'application/merge-patch+json',
+    'Content-Type': 'application/json',
   });
 
   return fetch(`${url}/panier/${article.id}`, {
@@ -65,12 +65,32 @@ export function patchPanierById(article) {
     });
 }
 
-export function postPanierByID(article) {
+export function deletePanierById(article) {
   const header = new Headers({
-    'Content-Type': 'application/merge-patch+json',
+    'Content-Type': 'application/json',
   });
 
   return fetch(`${url}/panier/${article.id}`, {
+    method: 'DELETE',
+    body: JSON.stringify(article),
+    headers: header,
+  })
+    .then(response => {
+      if (response.ok) return response.json();
+      throw Error(`Erreur au niveau de deletePanierById ${response.status}`);
+    })
+
+    .catch(error => {
+      console.log(`Il y a eu un problème avec l'opération fetch: ${error.message}`);
+    });
+}
+
+export function postPanierByID(article) {
+  const header = new Headers({
+    'Content-Type': 'application/json',
+  });
+
+  return fetch(`${url}/panier`, {
     method: 'POST',
     body: JSON.stringify(article),
     headers: header,

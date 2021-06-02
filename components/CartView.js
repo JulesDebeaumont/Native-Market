@@ -44,7 +44,7 @@ export function CartView() {
       </ScrollView>
       <View style={styles.buttons}>
         <Button title="Lancer la commande !" onPress={createButtonAlert} />
-        <Button title="Vider le panier" onPress={() => resetPanier()} />
+        <Button title="Vider le panier" onPress={() => resetPanier({ null: {} })} />
       </View>
       <Footer route="/" />
     </>
