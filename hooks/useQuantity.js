@@ -2,7 +2,7 @@
 /* eslint-disable no-restricted-syntax */
 import { useContext } from 'react';
 import { MyContext } from '../context/store';
-import { changeQuantityArticleInCart, setIsBusy, unsetIsBusy } from '../actions/index';
+import { changeQuantityArticleInCart, setIsBusy, unsetIsBusy, deleteArticleInCart } from '../actions/index';
 import { patchPanierById, postPanierByID, deletePanierById } from '../services/panierAPI';
 
 export default function useQuantity() {
@@ -22,10 +22,10 @@ export default function useQuantity() {
         dispatch(changeQuantityArticleInCart(response));
         dispatch(unsetIsBusy(id));
       }
-    } else {
+    } else if (quantity === 0) {
       dispatch(setIsBusy(id));
-      const response = await deletePanierById({ quantity, id, prix });
-      dispatch(deletePanierById(response));
+      await deletePanierById(id);
+      dispatch(deleteArticleInCart(id));
       dispatch(unsetIsBusy(id));
     }
   }

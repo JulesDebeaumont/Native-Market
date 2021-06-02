@@ -1,3 +1,4 @@
+/* eslint-disable no-case-declarations */
 import { actions } from '../actions/index';
 
 export const initialState = {
@@ -21,10 +22,9 @@ export default function reducer(state = initialState, action) {
       };
 
     case actions.DELETE_ARTICLE_IN_CART:
-      return {
-        ...state,
-        cart: { ...action.article },
-      };
+      const copyState = { ...state };
+      delete copyState.cart[action.id];
+      return copyState;
 
     case actions.SET_IS_BUSY:
       return {

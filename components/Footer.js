@@ -23,8 +23,8 @@ export function Footer(props) {
       <View style={styles.footer}>
         <Link to={route}>
           <>
-            <Text>Quantity: {totalQuantity}</Text>
-            <Text>Total Price: {totalPrice.toFixed(2)}€</Text>
+            <Text>Quantity: {totalQuantity ?? 0}</Text>
+            <Text>Total Price: {totalPrice.toFixed(2) ?? 0}€</Text>
           </>
         </Link>
       </View>

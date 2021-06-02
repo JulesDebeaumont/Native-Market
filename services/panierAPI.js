@@ -65,14 +65,13 @@ export function patchPanierById(article) {
     });
 }
 
-export function deletePanierById(article) {
+export function deletePanierById(id) {
   const header = new Headers({
     'Content-Type': 'application/json',
   });
 
-  return fetch(`${url}/panier/${article.id}`, {
+  return fetch(`${url}/panier/${id}`, {
     method: 'DELETE',
-    body: JSON.stringify(article),
     headers: header,
   })
     .then(response => {

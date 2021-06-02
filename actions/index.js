@@ -29,10 +29,10 @@ export function changeQuantityArticleInCart(article) {
   };
 }
 
-export function deleteArticleInCart(article) {
+export function deleteArticleInCart(id) {
   return {
     type: actions.DELETE_ARTICLE_IN_CART,
-    article,
+    id,
   };
 }
 
