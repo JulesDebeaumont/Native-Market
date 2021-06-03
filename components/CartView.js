@@ -1,6 +1,6 @@
 /* eslint-disable guard-for-in */
 /* eslint-disable no-restricted-syntax */
-import { ScrollView, StyleSheet, View, Button, Alert } from 'react-native';
+import { ScrollView, StyleSheet, View, Button, Alert, Text } from 'react-native';
 import React, { useContext } from 'react';
 import { Footer } from './Footer';
 import { MyContext } from '../context/store';
@@ -43,8 +43,14 @@ export function CartView() {
         </View>
       </ScrollView>
       <View style={styles.buttons}>
-        <Button title="Lancer la commande !" onPress={createButtonAlert} />
-        <Button title="Vider le panier" onPress={() => resetPanier()} />
+        {totalPrice > 0 ? (
+          <>
+            <Button title="Lancer la commande !" onPress={createButtonAlert} />
+            <Button title="Vider le panier" onPress={() => resetPanier()} />
+          </>
+        ) : (
+          <Text style={styles.empty}>Vous panier est vide.</Text>
+        )}
       </View>
       <Footer route="/" />
     </>
@@ -59,6 +65,9 @@ const styles = StyleSheet.create({
   buttons: {
     flexDirection: 'column',
     marginBottom: 80,
+  },
+  empty: {
+    textAlign: 'center',
   },
 });
 
