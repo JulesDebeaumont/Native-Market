@@ -13,26 +13,6 @@ export function getAllPanier() {
     });
 }
 
-export function patchCartToEmpty(cart) {
-  const header = new Headers({
-    'Content-Type': 'application/json',
-  });
-
-  return fetch(`${url}/panier`, {
-    method: 'PATCH',
-    body: JSON.stringify(cart),
-    headers: header,
-  })
-    .then(response => {
-      if (response.ok) return response.json();
-      throw Error(`Erreur au niveau de patchCartToEmpty ${response.status}`);
-    })
-
-    .catch(error => {
-      console.log(`Il y a eu un problème avec l'opération fetch: ${error.message}`);
-    });
-}
-
 export function getPanierById(id) {
   return fetch(`${url}/panier/${id}`)
     .then(response => {
